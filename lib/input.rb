@@ -2,8 +2,8 @@
 module  Input
   def get_theme
     puts 'Escolha um tema, quando quiser salvar o jogo, digite "salvar", quando quiser sair, digite "sair"'
-    puts 'Temas: animais, objetos.'
-    verify(gets.chomp,%w[animais objetos],:get_theme)
+    puts 'Temas: animais, objetos, espaço.'
+    verify(gets.chomp,%w[animais objetos espaço],:get_theme)
   end
 
   def get_guess

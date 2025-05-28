@@ -46,6 +46,3 @@ class Game
     end
   end
 end
-system('clear')
-game = Game.new
-game.start
