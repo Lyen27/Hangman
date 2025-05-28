@@ -98,7 +98,7 @@ mistakes = '')
   end
 
   def get_line(line)
-    File.readlines('words.txt')[line].chomp.split(' ')
+    File.readlines('lib/words.txt')[line].chomp.split(' ')
   end
 
   def create_dictionary
