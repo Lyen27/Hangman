@@ -5,12 +5,14 @@ class Game
   include Input
   def initialize
     @play_saved_game = play_saved_game?
-    if @play_saved_game == 's'
-      f = File.open('save.msgpack','r')
-      data = MessagePack.load(f.read)
-      f.close
-      @state = State.new(data['hang_man'],data['rope'],data['themes'],data['theme'],data['word'],data['secret_word'],data['mistakes'])
-    else @state = State.new()
+    if File.exist?('save.msgpack') && @play_saved_game == 's' 
+        f = File.open('save.msgpack','r')
+        data = MessagePack.load(f.read)
+        f.close
+        @state = State.new(data['hang_man'],data['rope'],data['themes'],data['theme'],data['word'],data['secret_word'],data['mistakes'])
+    else
+      @play_saved_game = 'n'
+      @state = State.new
     end
   end
 
@@ -19,10 +21,10 @@ class Game
         state.get_random_word
      end
      @play_saved_game = 'n'
-    while !state.win?
+     while !state.win?
       clear_display
       state.render_state
-      state.check_guess(state.get_guess)
+      return if state.check_guess(state.get_guess) == nil
       if state.hang_man == []
         clear_display
         state.render_state

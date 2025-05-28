@@ -1,14 +1,14 @@
 
 module  Input
   def get_theme
-    puts 'Escolha um tema, quando quiser salvar o jogo, digite "salvar"'
+    puts 'Escolha um tema, quando quiser salvar o jogo, digite "salvar", quando quiser sair, digite "sair"'
     puts 'Temas: animais, objetos.'
     verify(gets.chomp,%w[animais objetos],:get_theme)
   end
 
   def get_guess
     puts 'Escolha uma letra'
-    letter = verify(gets.chomp.downcase,%w[a b c d e f g h i j k l m n o p q r s t u v w x y z ç ã á ú é í õ - salvar],:get_guess)
+    letter = verify(gets.chomp.downcase,%w[a b c d e f g h i j k l m n o p q r s t u v w x y z ç ã á ú é í õ - salvar sair],:get_guess)
     if @mistakes.include?(letter)
       puts 'Você já tentou essa letra'
       letter = get_guess
@@ -17,6 +17,7 @@ module  Input
       f = File.new('save.msgpack', 'w')
       f.write(to_msgpack)
       f.close
+      puts 'jogo salvo'
       letter = get_guess
     end
     letter
@@ -37,7 +38,7 @@ module  Input
 
   def play_saved_game?
    puts 'Você quer carregar um jogo salvo?[s/n]'
-   gets.chomp
+   verify(gets.chomp,%w[s n],:play_saved_game?)
   end
 
   def to_msgpack

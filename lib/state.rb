@@ -83,6 +83,7 @@ mistakes = '')
   end
 
   def check_guess(guess)
+    return if guess == 'sair'
     if word.include?(guess)
       word.split('').each_with_index do |val,i|
         @secret_word[i] = guess if val == guess
