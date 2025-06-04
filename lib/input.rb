@@ -8,7 +8,7 @@ module  Input
 
   def get_guess
     puts 'Escolha uma letra'
-    letter = verify(gets.chomp.downcase,%w[a b c d e f g h i j k l m n o p q r s t u v w x y z ç ã á ú é í õ ó- salvar sair],:get_guess)
+    letter = verify(gets.chomp.downcase,%w[a b c d e f g h i j k l m n o p q r s t u v w x y z ç ã á ú é í õ ó - salvar sair],:get_guess)
     if @mistakes.include?(letter)
       puts 'Você já tentou essa letra'
       letter = get_guess
