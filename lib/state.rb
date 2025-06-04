@@ -77,7 +77,7 @@ mistakes = '')
   def get_random_word
     word_list = @themes[@theme]
     random_word = word_list[rand(word_list.length)]
-    @word = word_list.delete(random_word)
+    @word = word_list.delete(random_word).downcase
     @secret_word = Array.new(@word.length,'_')
   end
 
